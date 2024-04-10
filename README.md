@@ -54,7 +54,7 @@ These flight plans are a combination of the straight and curved flight plans. Fo
 | Orientation W | [-1, 1] | None |
 | Angular Velocity X | (∞, ∞) | °/s |
 | Angular Velocity Y | (∞, ∞) | °/s |
-| Angular Velocity Z | (∞, ∞) | Tesla |
+| Angular Velocity Z | (∞, ∞) | °/s |
 | Linear Acceleration X | (∞, ∞) | m/s<sup>2</sup> |
 | Linear Acceleration Y | (∞, ∞) | m/s<sup>2</sup> |
 | Linear Acceleration Z | (∞, ∞) | m/s<sup>2</sup> |
