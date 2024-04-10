@@ -1,4 +1,3 @@
-
 # UAV-GPS-Spoofing-Dataset
 ## Paper: Detecting Stealthy GPS Spoofing Attack Against UAVs Using Onboard Sensors
 Paper reference goes here
@@ -16,19 +15,21 @@ A GPS attack was constructed by modifying Gazebo's GPS sensor plugins and RPC me
 There are three flight plans used to generate the data: a straight flight, curved plan, and random plan. 
 
 #### Straight
-The most common flight scenario involves the UAV moving in a straight line towards a destination
+The most common flight scenario involves the UAV moving in a straight line towards a destination.
 
-[Image]
+[![Straight Flight Plan Image](https://github.com/anthony-finn/UAV-GPS-Spoofing-Dataset/blob/main/Images/Plan1_Cropped.png)](https://github.com)
 
 #### Curved
 Another common scenario is the drone moving in a curved path.The drone may weave around objects or buildings during it's flight.
 
-[Image]
+[![Curved Flight Plan Image](https://github.com/anthony-finn/UAV-GPS-Spoofing-Dataset/blob/main/Images/Plan2_Cropped.png)](https://github.com)
 
 #### Random
 These flight plans are a combination of the straight and curved flight plans. For example, the UAV may move in a straight line path, but transition into a curved flight plan.
 
 [Image]
+
+## Features
 
 #### Barometer
 | Feature Name | Data Range | Units | Description |
