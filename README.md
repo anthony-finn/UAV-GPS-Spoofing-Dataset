@@ -6,6 +6,8 @@ Paper reference goes here
 ## Introduction
 This repository provides a summary and description of the UAV GPS Spoofing dataset. The dataset was collected using PX4-SITL Gazebo-Classic in 2023 using a **quadcopter** drone.
 
+<Motivation>
+
 ## Description
 The dataset encompasses measurements from various onboard sensors, including the barometer, magnetometer, inertial measurement unit, and global positioning system. The **Attack Enabled** field classifies whether an attack was enabled at a point in time. The data was collected at a rate of **~250Hz**. The dataset can be resampled to other frequencies to emulate different sensor frequencies.
 
