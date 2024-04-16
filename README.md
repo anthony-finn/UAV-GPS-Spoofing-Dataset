@@ -1,3 +1,4 @@
+
 # UAV-GPS-Spoofing-Dataset
 ## Paper: Detecting Stealthy GPS Spoofing Attack Against UAVs Using Onboard Sensors
 Paper reference goes here
@@ -5,13 +6,13 @@ Paper reference goes here
 ## Introduction
 This repository provides a summary and description of the UAV GPS Spoofing dataset. The dataset was collected using PX4-SITL Gazebo-Classic in 2023 using a **quadcopter** drone.
 
-## Dataset Description
+## Description
 The dataset encompasses measurements from various onboard sensors, including the barometer, magnetometer, inertial measurement unit, and global positioning system. The **Attack Enabled** field classifies whether an attack was enabled at a point in time. The data was collected at a rate of **~250Hz**. The dataset can be resampled to other frequencies to emulate different sensor frequencies.
 
-There are two versions of the data: a raw and merged data set. The raw data set provides t
+There are three versions of the data: a raw, merged, and preprocessed data set. Each dataset is provided at the **bottom** of this page.
 
 ### GPS Attack
-A GPS attack was constructed by modifying Gazebo's GPS sensor plugins and RPC messages. **The formulation of the GPS attack can be found within the paper.** The attack involves the idea of deviating the drone from its planned flight trajectory while preventing the drone from detecting the attack through an EKF or another method. Our attack achieves this by incrementally offsetting the drone’s reported GPS position by certain amount for each reported GPS step. **If the increment is small enough, the GPS attack will go undetected and can lead to a large difference in groundtruth position and reported GPS position.**
+A GPS attack was constructed by modifying Gazebo's GPS sensor plugins and RPC messages. **The formulation of the GPS attack can be found within the paper.** The attack involves the idea of deviating the drone from its planned flight trajectory while preventing the drone from detecting the attack through an EKF or another method. Our attack achieves this by incrementally offsetting the drone’s reported GPS position by certain amount for each reported GPS step. **If the increment is small enough, the GPS attack will go undetected and can lead to a large difference in groundtruth position and reported GPS position.** The GPS attacks were conducted at a random interval between 60-120 seconds after the start of a flight.
 
 ### Flight Paths
 There are three flight plans used to generate the data: a straight flight, curved plan, and random plan. For each flight plan, a baseline flight and two attacked flights were simulated. Each of these flight plans represent common flight scenarios in which a UAV will encounter.
@@ -32,62 +33,122 @@ These flight plans are a combination of the straight and curved flight plans. Fo
 [Image]
 
 ## Features
-
+The following section depicts all features contained in the data, and what features can be derived/extracted. The applicable formulas for derivation have been provided in the **description** column.
 #### Barometer
-Raw
+**Raw**
 | Feature Name | Data Range | Units | Description |
-|  --------  |  -------  | ------- | -------  
-| Absolute Pressure | [0, ∞) | Bar |
-| Altitude | (∞, ∞) | m |
-| Temperature | (∞, ∞) | °C |
+| -------- | ------- | ------- | ------- | 
+| Absolute Pressure | [0, ∞) | Bar | |
+| Altitude | (∞, ∞) | m | |
+| Temperature | (∞, ∞) | °C | |
 
 **Derived**
+None
 
 #### Magnetometer
+**Raw**
 | Feature Name | Data Range | Units | Description |
-|  --------  |  -------  | ------- | ------- 
-| Magnetic Field X | (∞, ∞) | Tesla |
-| Magnetic Field Y | (∞, ∞) | Tesla |
-| Magnetic Field Z | (∞, ∞) | Tesla |
+| -------- |  ------- | ------- | ------- |
+| Magnetic Field X | (∞, ∞) | Tesla | |
+| Magnetic Field Y | (∞, ∞) | Tesla | |
+| Magnetic Field Z | (∞, ∞) | Tesla | |
 
 **Derived**
 | Feature Name | Data Range | Units | Description |
-|  --------  |  -------  | ------- | ------- 
-| Yaw | (, ∞) | Radian |
+| -------- | ------- | ------- | ------- |
+| Yaw | [$-\pi$, $\pi$] | Radian | $atan2(m_y,m_x)$ |
 
 #### Inertial Measurement Unit (IMU)
+**Raw**
 | Feature Name | Data Range | Units | Description |
-|  --------  |  -------  | -------  | -------
-| Orientation X | [-1, 1] | None |
-| Orientation Y | [-1, 1] | None |
-| Orientation Z | [-1, 1] | None |
-| Orientation W | [-1, 1] | None |
-| Angular Velocity X | (∞, ∞) | °/s |
-| Angular Velocity Y | (∞, ∞) | °/s |
-| Angular Velocity Z | (∞, ∞) | °/s |
-| Linear Acceleration X | (∞, ∞) | m/s<sup>2</sup> |
-| Linear Acceleration Y | (∞, ∞) | m/s<sup>2</sup> |
-| Linear Acceleration Z | (∞, ∞) | m/s<sup>2</sup> |
+| -------- | ------- | -------  | ------- |
+| Orientation X | [-1, 1] | None | |
+| Orientation Y | [-1, 1] | None | |
+| Orientation Z | [-1, 1] | None | |
+| Orientation W | [-1, 1] | None | |
+| Angular Velocity X | (∞, ∞) | $\frac{^\circ}{s}$ |
+| Angular Velocity Y | (∞, ∞) | $\frac{^\circ}{s}$ |
+| Angular Velocity Z | (∞, ∞) | $\frac{^\circ}{s}$ |
+| Linear Acceleration X | (∞, ∞) | $\frac{m}{s^2}$ |
+| Linear Acceleration Y | (∞, ∞) | $\frac{m}{s^2}$ |
+| Linear Acceleration Z | (∞, ∞) | $\frac{m}{s^2}$ |
+
+**Derived**
+| Feature Name | Data Range | Units | Description |
+| -------- | -------  | ------- | ------- |
+| Yaw | [$-\pi$, $\pi$] | Radian | $atan2(2(g_yg_w-g_xg_y),-1+2(g_w^2+g_x^2))$
+| Pitch | [$\frac{-\pi}{2}$, $\frac{\pi}{2}$] | Radian | $asin(\frac{a_x}{g})$
+| Roll| [$-\pi$, $\pi$] | Radian | $atan2(a_y,a_z)$
 
 #### Global Positioning System (GPS)
+**Raw**
 | Feature Name | Data Range | Units | Description |
-|  --------  |  -------  | ------- | ------- |
+| -------- | ------- | ------- | ------- |
 | Latitude | [-90, 90] | Degree | 
 | Longitude | [-180, 180] | Degree |
 | Altitude | (∞, ∞) | m |
-| Velocity | (∞, ∞) | m/s |
-| Velocity East | (∞, ∞) | m/s |
-| Velocity North | (∞, ∞) | m/s |
-| Velocity Up | (∞, ∞) | m/s |
+| Velocity | (∞, ∞) | $\frac{m}{s}$ |
+| Velocity East | (∞, ∞) | $\frac{m}{s}$ |
+| Velocity North | (∞, ∞) | $\frac{m}{s}$ |
+| Velocity Up | (∞, ∞) | $\frac{m}{s}$ |
 | Attack Enabled | [0, 1] | Bit |
 
-## Dataset
-Tree View Structure of Dataset
+**Derived**
+| Feature Name | Data Range | Units | Description |
+| -------- | ------- | ------- | ------- |
+| Velocity | (∞, ∞) | $\frac{m}{s}$ | WGS84 Distance Formula
 
-The link for the raw dataset can be found [here](https://drive.google.com/file/d/1jypbdKFP-4vN7HMwbnm4z4i-b0OhoPtS/view?usp=sharing).
+## Dataset Structure
+The following section displays the layout of the data, as well as how it is organized. This section aims to aid you in navigating the dataset.
 
-The link for the preprocessed dataset can be found
-[here]()
+### Directory Structure
+
+The following diagram depicts the structure of the **raw and merged** dataset. The first directory contains what **type of data** is contained in its subdirectory (e.g. raw data). The next directory is what **type of flight plan** was used for the data. Then, whether there was an **attack present** on the data, or was the drone under **normal** operations.
+
+The raw dataset provides each the log file with each sensor. The rows of the `.csv` are **not** guaranteed to be time synchronized, and must be preprocessed.
+```
+📦PX4_Simulation_Data.zip
+ ┣ 📂Merged
+ ┃ ┣ 📂Curved
+ ┃ ┃ ┣ 📂Attacked
+ ┃ ┃ ┃ ┣ 📜log_D_M_Y_HH_MM_SS.csv
+ ┃ ┃ ┃ ┗ 📜...
+ ┃ ┃ ┗ 📂Normal
+ ┃ ┣ 📂Random
+ ┃ ┗ 📂Straight
+ ┣ 📂Raw
+ ┃ ┣ 📂Curved
+ ┃ ┃ ┣ 📂Attacked
+ ┃ ┃ ┃ ┣ 📂log_D_M_Y_HH_MM_SS
+ ┃ ┃ ┃ ┃ ┣ 📜barometer.csv
+ ┃ ┃ ┃ ┃ ┣ 📜gps.csv
+ ┃ ┃ ┃ ┃ ┗ 📜...
+ ┃ ┃ ┃ ┗ 📂...
+ ┃ ┃ ┗ 📂Normal
+ ┃ ┣ 📂Random
+ ┗ ┗ 📂Straight
+```
+
+### CSV Structure
+**Merged**
+`log_D_M_Y_HH_MM_SS.csv`
+| Time | Pressure Altitude | Latitude | Longitude| Altitude| Velocity | Attack | Orientation | Angular Velocity | Linear Acceleration | Magnetic Field
+| -------- | ------- | ------- | ------- | ------- | ------- | -------  | -------  | ------- | ------- | ------- | ------- | ------- | ------- | 
+**Raw**
+`barometer.csv`
+| Time | Temperature | Absolute Pressure | Pressure Altitude |
+| -------- | ------- | ------- | ------- |
+
+`gps.csv`
+| Time | Latitude | Longitude | Altitude | eph | epv | Velocity | Attack |
+| -------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
+
+`groundtruth.csv`
+| Time | Latitude | Longitude | Altitude | Velocity | Attitude |
+| -------- | ------- | ------- | ------- | ------- | ------- | 
+### Links 
+
+The link for the raw dataset can be found [here](https://drive.google.com/file/d/1jypbdKFP-4vN7HMwbnm4z4i-b0OhoPtS/view?usp=sharing), while the link for the preprocessed dataset can be found [here]().
 
 ## Question and answers (Q&A)
 
