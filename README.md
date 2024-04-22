@@ -11,7 +11,11 @@ This repository provides a summary and description of the UAV GPS Spoofing datas
 ## Description
 The dataset encompasses measurements from various onboard sensors, including the barometer, magnetometer, inertial measurement unit, and global positioning system. The **Attack Enabled** field classifies whether an attack was enabled at a point in time. The data was collected at a rate of **~250Hz**. The dataset can be resampled to other frequencies to emulate different sensor frequencies.
 
-There are three versions of the data: a raw, merged, and preprocessed data set. Each dataset is provided at the **bottom** of this page. <Breif Description of three datasets>
+There are three versions of the data: a raw, merged, and preprocessed data set. 
+
+The raw dataset includes data for each UAV sensor (Barometer, GPS, IMU, Magnetometer). It also includes the groundtruth data and raw GPS data. The groundtruth data shows the real position of the drone within the simulated environment, while the raw GPS shows the signal data before attacking parameters and latitude or longitude deltas are applied. This dataset is not time synchronized enabling you perform your own preprocessing on the dataset. The merged dataset includes time synchronized data without the groundtruth or raw GPS data. This dataset can be used to resample the data frequency while keeping the data between each sensor synchronized. Several features have been removed from this set as there were not considered to be important. The preprocessed data set includes the data that was used in the paper as well as all the derived/calculated features. This data set can be used to mimic our work, and perform different testing with different machine learning techniques on our data.
+
+Each dataset is provided at the **bottom** of this page.
 
 ### GPS Attack
 A GPS attack was constructed by modifying Gazebo's GPS sensor plugins and RPC messages. **The formulation of the GPS attack can be found within the paper.** The attack involves the idea of deviating the drone from its planned flight trajectory while preventing the drone from detecting the attack through an EKF or another method. Our attack achieves this by incrementally offsetting the drone’s reported GPS position by certain amount for each reported GPS step. **If the increment is small enough, the GPS attack will go undetected and can lead to a large difference in groundtruth position and reported GPS position.** The GPS attacks were conducted at a random interval between 60-120 seconds after the start of a flight.
