@@ -6,7 +6,9 @@ Paper reference goes here
 ## Introduction
 This repository provides a summary and description of the UAV GPS Spoofing dataset. The dataset was collected using PX4-SITL Gazebo-Classic in 2023 using a **quadcopter** drone.
 
-Some military, commercial, and civil uses of drones extend to real-time monitoring, search-and-rescue operations, wireless coverage, remote sensing, delivery services, security, and surveillance. Drones rely Global Navigation Satellite Systems (GNSS) for guidance, navigation, and control (GNC). Global Positioning System (GPS) is the most widely used drone GNSS system for navigation and positioning. Drones reliant on GPS require accurate and reliable position information to operate securely and safely. However, GPS signals are not encrypted and have no authentication. As a result, GPS signals are susceptible to external attacks like spoofing or jamming.
+Drones have a wide range of applications in military, commercial, and civilian sectors. These include real-time monitoring, search-and-rescue operations, expanding wireless coverage, remote sensing for data collection, delivery services, and security and surveillance tasks.
+
+While Global Navigation Satellite Systems (GNSS) are widely used for drone navigation, with GPS being the most common system, a critical vulnerability exists.  These GPS-dependent drones require precise and reliable positioning data for safe operation. However, one of GPS' flaws is its lack of encryption and authentication. This makes them susceptible to manipulation by attackers who can either spoof the GPS signal or jam it entirely.
 
 ## Description
 The dataset encompasses measurements from various onboard sensors, including the barometer, magnetometer, inertial measurement unit, and global positioning system. The **Attack Enabled** field classifies whether an attack was enabled at a point in time. The data was collected at a rate of **~250Hz**. The dataset can be resampled to other frequencies to emulate different sensor frequencies.
@@ -35,8 +37,6 @@ Another common scenario is the drone moving in a curved path.The drone may weave
 
 #### Random
 These flight plans are a combination of the straight and curved flight plans. For example, the UAV may move in a straight line path, but transition into a curved flight plan.
-
-[Image]
 
 ## Features
 The following section depicts all features contained in the data, and what features can be derived/extracted. The applicable formulas for derivation have been provided in the **description** column.
@@ -136,24 +136,36 @@ The raw dataset provides each the log file with each sensor. The rows of the `.c
 ```
 
 ### CSV Structure
-**Merged**
-`log_D_M_Y_HH_MM_SS.csv`
-| Time | Pressure Altitude | Latitude | Longitude | Altitude| Velocity | Attack | Orientation | Angular Velocity | Linear Acceleration | Magnetic Field |
-| -------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
+The following table represents the file naming scheme and structure of the csv file. Each table column can have multiple values per field.
 
-**Raw**
+#### Raw
 `barometer.csv`
 | Time | Temperature | Absolute Pressure | Pressure Altitude |
 | -------- | ------- | ------- | ------- |
 
-`gps.csv`
+`gps.csv` & `raw_gps.csv`
 | Time | Latitude | Longitude | Altitude | eph | epv | Velocity | Attack |
 | -------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
 
 `groundtruth.csv`
 | Time | Latitude | Longitude | Altitude | Velocity | Attitude |
 | -------- | ------- | ------- | ------- | ------- | ------- | 
-### Links 
+
+`imu.csv`
+| Orientation | Orientation Covariance | Angular Velocity | Angular Velocity Covariance | Linear Acceleration | Linear Acceleration Covariance | Time |
+| ------- | ------- | ------- | ------- | ------- | ------- | ------- |
+
+`magnetometer.csv`
+| Time | Magnetic Field | Magnetic Field Covariance |
+| ------- | ------- | ------- 
+
+#### Merged
+
+`log_DD_MM_YYYY_HH_MM_SS.csv`
+| Time | Pressure Altitude | Latitude | Longitude | Altitude| Velocity | Attack | Orientation | Angular Velocity | Linear Acceleration | Magnetic Field |
+| -------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
+
+### Data Links 
 
 The link for the raw dataset can be found [here](https://drive.google.com/file/d/1jypbdKFP-4vN7HMwbnm4z4i-b0OhoPtS/view?usp=sharing), while the link for the preprocessed dataset can be found [here]().
 
