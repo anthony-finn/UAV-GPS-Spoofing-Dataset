@@ -171,6 +171,39 @@ The link for the raw dataset can be found [here](https://drive.google.com/file/d
 
 ## Question and answers (Q&A)
 
-- How would I get started?
+**Q: How would I get started?**\
+**A:** The easiest way to get started with this data set is to download the preprocessed data set. This data will provide you with a good basis to begin formulating your own research and experiments using machine learning/artificial intelligence. The data can be loaded into a python notebook like this through the [pandas](https://pandas.pydata.org/) library:
 
-- 
+```console
+pip install pandas
+```
+```python
+import pandas as pd
+df = pd.read_csv("<FILE_NAME>")
+```
+
+The replace the **\<FileName\>** with the path to the preprocessed *.csv* file. After importing the file into a python notebook, you can begin working. There are many simple tutorials which can guide you into using various machine learning libraries. One populat machine learning platform is [Tensorflow](https://www.tensorflow.org/).
+
+**Q: How can I use the raw data?**\
+**A:** The raw data is difficult in that it is not synchronized. If you would like to synchronize the data, you can run the following python script:
+
+```python
+import glob
+csv_files = glob.glob(f'<DIRECTORY_PATH>/*.csv')
+dfs = []
+for file in csv_files:
+    df = pd.read_csv(file)
+    dfs.append(df)
+
+merged_df = dfs[0]
+for i in range(1, len(dfs)):
+    merged_df = pd.merge(merged_df, dfs[i], on='time_usec', how='outer')
+    merged_df = merged_df.drop_duplicates(subset='time_usec', keep='first')
+merged_df = merged_df.dropna()
+merged_df.to_csv("<OUTPUT_PATH>", index=False)
+```
+
+This script will take a collection of the raw *.csv* data files and combine them into one *.csv* file which is synchronized by time and doesn't have any null values. This accomplishes this by first joining each file on the *time_usec* field, then dropping the duplicates and null values. 
+
+## More Information
+For more detailed information on the formulation of the GPS attack, see [this]() repository. This repository includes the instructions on how to setup the virtual machine with PX4 and Classic Gazebo under the correct versions.
