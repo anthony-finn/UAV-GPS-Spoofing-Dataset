@@ -6,7 +6,7 @@ Paper reference goes here
 ## Introduction
 This repository provides a summary and description of the UAV GPS Spoofing dataset. The dataset was collected using PX4-SITL Gazebo-Classic in 2023 using a **quadcopter** drone.
 
-<Motivation>
+Some military, commercial, and civil uses of drones extend to real-time monitoring, search-and-rescue operations, wireless coverage, remote sensing, delivery services, security, and surveillance. Drones rely Global Navigation Satellite Systems (GNSS) for guidance, navigation, and control (GNC). Global Positioning System (GPS) is the most widely used drone GNSS system for navigation and positioning. Drones reliant on GPS require accurate and reliable position information to operate securely and safely. However, GPS signals are not encrypted and have no authentication. As a result, GPS signals are susceptible to external attacks like spoofing or jamming.
 
 ## Description
 The dataset encompasses measurements from various onboard sensors, including the barometer, magnetometer, inertial measurement unit, and global positioning system. The **Attack Enabled** field classifies whether an attack was enabled at a point in time. The data was collected at a rate of **~250Hz**. The dataset can be resampled to other frequencies to emulate different sensor frequencies.
