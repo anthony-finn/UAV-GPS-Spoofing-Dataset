@@ -42,7 +42,7 @@ These flight plans are a combination of the straight and curved flight plans. Fo
 The following section depicts all features contained in the data, and what features can be derived/extracted. The applicable formulas for derivation have been provided in the **description** column.
 
 Here is an overview of all the features and derived features.
-[![Feature Overview](/Images/Feature_Overview.png)][https://github.com]
+[![Feature Overview](/Images/Feature_Overview.png)](https://github.com)
 
 #### Barometer
 **Raw**
