@@ -28,18 +28,22 @@ There are three flight plans used to generate the data: a straight flight, curve
 #### Straight
 The most common flight scenario involves the UAV moving in a straight line towards a destination.
 
-[![Straight Flight Plan Image](https://github.com/anthony-finn/UAV-GPS-Spoofing-Dataset/blob/main/Images/Plan1_Cropped.png)](https://github.com)
+[![Straight Flight Plan Image](/main/Images/Plan1_Cropped.png)](https://github.com)
 
 #### Curved
 Another common scenario is the drone moving in a curved path.The drone may weave around objects or buildings during it's flight.
 
-[![Curved Flight Plan Image](https://github.com/anthony-finn/UAV-GPS-Spoofing-Dataset/blob/main/Images/Plan2_Cropped.png)](https://github.com)
+[![Curved Flight Plan Image](/Images/Plan2_Cropped.png)](https://github.com)
 
 #### Random
 These flight plans are a combination of the straight and curved flight plans. For example, the UAV may move in a straight line path, but transition into a curved flight plan.
 
 ## Features
 The following section depicts all features contained in the data, and what features can be derived/extracted. The applicable formulas for derivation have been provided in the **description** column.
+
+Here is an overview of all the features and derived features.
+[![Feature Overview](/Images/Feature_Overview.png)][https://github.com]
+
 #### Barometer
 **Raw**
 | Feature Name | Data Range | Units | Description |
