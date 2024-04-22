@@ -138,8 +138,8 @@ The raw dataset provides each the log file with each sensor. The rows of the `.c
 ### CSV Structure
 **Merged**
 `log_D_M_Y_HH_MM_SS.csv`
-| Time | Pressure Altitude | Latitude | Longitude| Altitude| Velocity | Attack | Orientation | Angular Velocity | Linear Acceleration | Magnetic Field |
-| -------- | ------- | ------- | ------- | ------- | ------- | -------  | -------  | ------- | ------- | ------- | ------- | ------- | ------- | 
+| Time | Pressure Altitude | Latitude | Longitude | Altitude| Velocity | Attack | Orientation | Angular Velocity | Linear Acceleration | Magnetic Field |
+| -------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
 
 **Raw**
 `barometer.csv`
