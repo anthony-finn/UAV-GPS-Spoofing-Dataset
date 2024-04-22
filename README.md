@@ -48,7 +48,7 @@ The following section depicts all features contained in the data, and what featu
 | Altitude | (∞, ∞) | m | |
 | Temperature | (∞, ∞) | °C | |
 
-**Derived**
+**Derived**\
 None
 
 #### Magnetometer
@@ -103,6 +103,8 @@ None
 | Feature Name | Data Range | Units | Description |
 | -------- | ------- | ------- | ------- |
 | Velocity | (∞, ∞) | $\frac{m}{s}$ | WGS84 Distance Formula
+| Latitude Delta | (∞, ∞) | Degree | Latitude Difference
+| Longitude Delta | (∞, ∞) | Degree | Longitude Difference
 
 ## Dataset Structure
 The following section displays the layout of the data, as well as how it is organized. This section aims to aid you in navigating the dataset.
@@ -147,6 +149,8 @@ The following table represents the file naming scheme and structure of the csv f
 | Time | Latitude | Longitude | Altitude | eph | epv | Velocity | Attack |
 | -------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
 
+
+
 `groundtruth.csv`
 | Time | Latitude | Longitude | Altitude | Velocity | Attitude |
 | -------- | ------- | ------- | ------- | ------- | ------- | 
@@ -182,10 +186,10 @@ import pandas as pd
 df = pd.read_csv("<FILE_NAME>")
 ```
 
-The replace the **\<FileName\>** with the path to the preprocessed *.csv* file. After importing the file into a python notebook, you can begin working. There are many simple tutorials which can guide you into using various machine learning libraries. One populat machine learning platform is [Tensorflow](https://www.tensorflow.org/).
+The replace the **\<FileName\>** with the path to the preprocessed *.csv* file. After importing the file into a python notebook, you can begin working. There are many simple tutorials which can guide you into using various machine learning libraries. One popular machine learning platform is [Tensorflow](https://www.tensorflow.org/) and [scikit-learn](https://scikit-learn.org/). **This code sample can be applied to the merged data set as well!**
 
 **Q: How can I use the raw data?**\
-**A:** The raw data is difficult in that it is not synchronized. If you would like to synchronize the data, you can run the following python script:
+**A:** The raw data is difficult in that it is not synchronized. Each row is not guaranteed to be the same point in time between each file. Luckily, we store the UTC time information, which enables us to synchronized each file together. If you would like to synchronize the data, you can run the following python script:
 
 ```python
 import glob
@@ -203,7 +207,7 @@ merged_df = merged_df.dropna()
 merged_df.to_csv("<OUTPUT_PATH>", index=False)
 ```
 
-This script will take a collection of the raw *.csv* data files and combine them into one *.csv* file which is synchronized by time and doesn't have any null values. This accomplishes this by first joining each file on the *time_usec* field, then dropping the duplicates and null values. 
+This script will take a collection of the raw *.csv* data files and combine them into one *.csv* file which is synchronized by time. This accomplishes this by first joining each file on the *time_usec* field, then dropping the duplicates and null values. 
 
 ## More Information
 For more detailed information on the formulation of the GPS attack, see [this]() repository. This repository includes the instructions on how to setup the virtual machine with PX4 and Classic Gazebo under the correct versions.
