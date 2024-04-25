@@ -47,6 +47,7 @@ The following section depicts all features contained in the data, and what featu
 Here is an overview of all the features and derived features.\
 [![Feature Overview](/Images/Feature_Overview.png)](https://github.com)
 <Give annotation about features>
+<Cross reference paper to table>
 #### Barometer
 **Raw**
 | Feature Name | Data Range | Units | Description |
