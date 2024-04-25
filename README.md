@@ -10,6 +10,8 @@ Drones have a wide range of applications in military, commercial, and civilian s
 
 While Global Navigation Satellite Systems (GNSS) are widely used for drone navigation, with GPS being the most common system, a critical vulnerability exists.  These GPS-dependent drones require precise and reliable positioning data for safe operation. However, one of GPS' flaws is its lack of encryption and authentication. This makes them susceptible to manipulation by attackers who can either spoof the GPS signal or jam it entirely.
 
+<What makes this dataset unique>
+
 ## Description
 The dataset encompasses measurements from various onboard sensors, including the barometer, magnetometer, inertial measurement unit, and global positioning system. The **Attack Enabled** field classifies whether an attack was enabled at a point in time. The data was collected at a rate of **~250Hz**. The dataset can be resampled to other frequencies to emulate different sensor frequencies.
 
