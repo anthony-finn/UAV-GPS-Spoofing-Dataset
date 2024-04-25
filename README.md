@@ -148,7 +148,7 @@ The raw dataset provides each the log file with each sensor. The rows of the `.c
 ### CSV Structure
 The following table represents the file naming scheme and structure of the csv file. Each table column can have multiple values per field.
 
-#### Raw
+#### __Raw__
 `barometer.csv`
 | Time | Temperature | Absolute Pressure | Pressure Altitude |
 | -------- | ------- | ------- | ------- |
@@ -171,7 +171,7 @@ The following table represents the file naming scheme and structure of the csv f
 | Time | Magnetic Field | Magnetic Field Covariance |
 | ------- | ------- | ------- 
 
-#### Merged
+#### __Merged__
 
 `log_DD_MM_YYYY_HH_MM_SS.csv`
 | Time | Pressure Altitude | Latitude | Longitude | Altitude| Velocity | Attack | Orientation | Angular Velocity | Linear Acceleration | Magnetic Field |
