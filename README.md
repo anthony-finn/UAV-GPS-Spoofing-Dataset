@@ -198,7 +198,7 @@ The replace the **\<FileName\>** with the path to the preprocessed *.csv* file. 
 
 **Q: How can I use the raw data?**\
 **A:** The raw data is difficult in that it is not synchronized. Each row is not guaranteed to be the same point in time between each file. Luckily, we store the UTC time information, which enables us to synchronized each file together. If you would like to synchronize the data, you can run the following python script:
-
+<Allows different approaches>
 ```python
 import glob
 csv_files = glob.glob(f'<DIRECTORY_PATH>/*.csv')
